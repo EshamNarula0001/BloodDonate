@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         this.setTitle("Login Section");
         login = (Button) findViewById(R.id.button);
         name = (EditText) findViewById(R.id.editText1);
-        mdatabase=FirebaseDatabase.getInstance().getReference();
+
 
 
         pass = (EditText) findViewById(R.id.editText2);
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent in=new Intent(MainActivity.this,Registration.class);
                 startActivity(in);
+                finish();
             }
         });
 
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     mdatabase.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-
+                            String password = dataSnapshot.child("password").getValue().toString().trim();
 
 
 
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onCancelled(DatabaseError databaseError) {
 
                         }
-                    })
+                    });
 
 
 
